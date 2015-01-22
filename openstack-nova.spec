@@ -6,7 +6,7 @@
 
 Name:             openstack-nova
 Version:          2014.2.1
-Release:          1%{?dist}
+Release:          1.chameleon1%{?dist}
 Summary:          OpenStack Compute (nova)
 
 Group:            Applications/System
@@ -45,6 +45,7 @@ Source30:         openstack-nova-novncproxy.sysconfig
 #
 Patch0001: 0001-remove-runtime-dep-on-python-pbr.patch
 Patch0002: 0002-Move-notification-point-to-a-better-place.patch
+Patch0003: 0003-Chameleon-restrict-ironic-nodes.patch
 
 BuildArch:        noarch
 BuildRequires:    intltool
@@ -449,6 +450,7 @@ This package contains documentation files for nova.
 
 %patch0001 -p1
 %patch0002 -p1
+%patch0003 -p1
 
 find . \( -name .gitignore -o -name .placeholder \) -delete
 
@@ -806,6 +808,9 @@ exit 0
 %endif
 
 %changelog
+* Thu Jan 22 2015 Pierre Riteau <priteau@uchicago.edu> 2014.2.1-1.chameleon1.el7
+- Chameleon: add patch to restrict Ironic node selection
+
 * Tue Dec 09 2014 Pádraig Brady <pbrady@redhat.com> - 2014.2.1-1
 - Update to upstream 2014.2.1 release
 

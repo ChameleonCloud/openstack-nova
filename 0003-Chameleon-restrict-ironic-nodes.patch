@@ -1,0 +1,23 @@
+diff --git a/nova/virt/ironic/driver.py b/nova/virt/ironic/driver.py
+index 6fb464b..b2246f5 100644
+--- a/nova/virt/ironic/driver.py
++++ b/nova/virt/ironic/driver.py
+@@ -80,6 +80,8 @@
+                default=2,
+                help=('How often to retry in seconds when a request '
+                      'does conflict')),
++    cfg.StrOpt('chassis_uuid',
++               help='Restrict Ironic nodes to this chassis UUID.'),
+     ]
+ 
+ ironic_group = cfg.OptGroup(name='ironic',
+@@ -446,7 +448,8 @@
+ 
+     def _refresh_cache(self):
+         icli = client_wrapper.IronicClientWrapper()
+-        node_list = icli.call('node.list', detail=True)
++        node_list = icli.call('node.list', detail=True,
++                              chassis_uuid=CONF.ironic.chassis_uuid)
+         node_cache = {}
+         for node in node_list:
+             node_cache[node.uuid] = node
