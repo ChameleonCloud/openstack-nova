@@ -6,7 +6,7 @@
 
 Name:             openstack-nova
 Version:          2014.2.1
-Release:          1.chameleon1%{?dist}
+Release:          1%{?dist}.chameleon1
 Summary:          OpenStack Compute (nova)
 
 Group:            Applications/System
